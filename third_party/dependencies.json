@@ -1,0 +1,12 @@
+{
+  "codexbar": {
+    "version": "v0.70.0",
+    "url": "https://github.com/nesszer/Win-CodexBar/releases/download/v0.70.0/CodexBar-0.70.0-portable.exe",
+    "sha256": "6607fa34a68b1aea0bbcf810871a71debca628e95df1c8068a14b45510c54454"
+  },
+  "codexmeter": {
+    "version": "v0.1.0",
+    "url": "https://github.com/Bangerz/CodexMeter/releases/download/v0.1.0/CodexMeter-v0.1.0-win-x64.zip",
+    "sha256": "0c05a05717393edf61996a2c09b52201ebf483002723c6fa3c89190ca17900b6"
+  }
+}
