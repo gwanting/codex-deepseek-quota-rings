@@ -16,6 +16,8 @@ Windows 桌面用量工具：两个透明任务栏圆环、一个统一启动入
 - DeepSeek 中心数字与 Codex 使用相同字体、字号和居中位置；内外环的大小、粗细一致。整数余额直接舍去小数，详情面板仍显示两位小数。
 - 内环颜色为峰期红色、谷期绿色；在峰谷切换后恢复满圈，按整个连续时段的剩余比例逐秒缩短；周末、节假日不会在午夜重置。悬停显示具体倒计时；无法确认切换时间时不显示进度。
 - 余额详情面板提供“去充值”入口，用默认浏览器打开 DeepSeek 官方充值页。
+- 面板显示**今日消费、今日 Token**：通过官方平台网页登录态，按北京时间汇总该账户所有 API Key、模型的 API 调用；Token 包含缓存命中输入、缓存未命中输入和输出，消费包含官方返回的模型及功能费用。
+- Token 根据数量显示为“亿、千万、百万”，保留两位小数；不足百万时显示完整数字。消费保留两位小数。
 - DeepSeek 峰谷按北京时间判断：工作日 09:00–12:00、14:00–18:00 为峰期，其余时段、周末和中国法定节假日为谷期。当前内置 **2026 年假日表**，后续年份需要更新；无法确认时提示灰色。
 
 ## 使用便携包
@@ -23,13 +25,14 @@ Windows 桌面用量工具：两个透明任务栏圆环、一个统一启动入
 1. 下载本仓库 Release 的 Windows x64 ZIP，完整解压到可写目录。
 2. 安装 [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) 和 [.NET 10 Desktop Runtime x64](https://dotnet.microsoft.com/download/dotnet/10.0)（若尚未安装）。
 3. 双击 `Start.cmd`。在 Win-CodexBar 中完成 Codex 登录来源设置和 DeepSeek API 密钥配置。
-4. 可运行 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1` 创建统一桌面快捷方式。没有自动添加新的开机启动项。
+4. 在余额面板点击“登录用量”，在独立官方窗口登录与 API 密钥相同的开放平台账户。成功后自动读取统计；约每分钟刷新。其他账户、免费聊天产品不计入此 API 用量。
+5. 可运行 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1` 创建统一桌面快捷方式。没有自动添加新的开机启动项。
 
 DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，不需要再次填写。Codex 圆环需要已安装并登录的 Codex 应用/CLI。
 
 ## 从源码构建
 
-需要 Windows x64 自带的 .NET Framework C# 编译器（`Framework64/v4.0.30319/csc.exe`），以及上述运行时。
+需要 Windows x64 自带的 .NET Framework C# 编译器（`Framework64/v4.0.30319/csc.exe`），以及上述运行时。构建脚本下载并校验固定版本的微软 WebView2 SDK；运行 JavaScript 请求检查还需要 Node.js。
 
 ```powershell
 .\build.ps1                 # 下载并校验固定版本上游依赖，编译三个入口
@@ -37,12 +40,13 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 .\install.ps1 -Start        # 创建统一桌面图标并启动
 ```
 
-依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.1.2`。
+依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.2.0`。
 
 ## 数据来源与限制
 
 - **Codex**：读取当前 `CODEX_HOME/sessions`（默认 `~/.codex/sessions`）中额度事件的元数据，并以 CodexMeter 的只读接口查询补充。事件通常在数秒内反映；接口约每 30 秒查询一次，失败约每 15 秒重试。不同会话与服务端存在延迟，不能保证与 Codex 每一帧完全一致。数据过期或已重置时显示 `--`，不推算虚构额度。
 - **DeepSeek**：查询官方 `https://api.deepseek.com/user/balance`；约每 60 秒更新，失败每 15 秒重试。过期金额不作为当前读数展示。外环是相对用户设定基准的比例，不是官方请求次数额度。
+- **今日账户用量**：独立 WebView2 窗口在官方平台页面内只读查询 `usage/by_api_key/amount`、`cost`，显式采用北京时间边界。网页内部接口可能变化，官方统计也可能有延迟。未登录、登录失效、跨日或缓存超过 5 分钟时显示未知，不能视为零。详细说明见 [PLATFORM_USAGE.md](DeepSeekBalance/PLATFORM_USAGE.md)。
 - Windows 系统代理由统一启动器传给子程序；不会为你切换代理节点。
 - Win-CodexBar 的详情由上游独立刷新，和圆环不是同一个界面数据对象。
 
@@ -51,3 +55,5 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 `DualQuotaBar/` 为 Codex 圆环与统一启动器；`DeepSeekBalance/` 为余额视图；`third_party/` 保存固定依赖清单及许可证。原版 Win-CodexBar 和 CodexMeter 以校验后的原文件随便携包提供。
 
 本项目代码 MIT，第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。仓库及便携包均不附带个人 API 密钥、账户配置或日志。
+
+官方网页登录态保存在本机 `%LOCALAPPDATA%\DeepSeekQuotaUsage\WebProfile`，汇总缓存位于同目录 `today.json`；这些内容不随仓库或便携包上传，也不读取其他浏览器资料。查询过程不发起模型调用。

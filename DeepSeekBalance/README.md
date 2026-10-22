@@ -6,4 +6,6 @@
 
 每 60 秒只读查询 DeepSeek 官方余额，直接读取当前用户在 Win-CodexBar 中保存的 DeepSeek 密钥，兼容其 DPAPI 存储格式。密钥不另存、不输出。查余额不发起模型任务。
 
+今日消费与 Token 通过“登录用量”接入官方开放平台账户统计：北京时间按日汇总所有 API Key、模型，Token 包含缓存命中输入、缓存未命中输入及输出，显示为亿／千万／百万。独立登录窗口需要系统 WebView2 Runtime，构建依赖由 `build-platform.ps1` 固定版本下载并校验。登录态与统计缓存仅保留在本机用户目录，详细说明见 [PLATFORM_USAGE.md](PLATFORM_USAGE.md)。
+
 `balance-reference.example.json` 是公开的 20 元默认基准，和用户真实余额无关。运行时设置存放在 `build/balance-reference.json`，不纳入 Git。其他说明见根目录 README。

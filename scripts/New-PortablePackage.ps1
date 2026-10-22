@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$Version='v0.1.0')
+param([string]$Version='v0.2.0')
 $ErrorActionPreference='Stop'
 if($Version -notmatch '^v[0-9]+\.[0-9]+\.[0-9]+$'){throw 'Version must be vX.Y.Z.'}
 $root=Split-Path -Parent $PSScriptRoot
@@ -12,8 +12,16 @@ $files=@(
  'DualQuotaBar\build\DualQuotaBar.exe','DualQuotaBar\build\CodexUsageLauncher.exe',
  'DualQuotaBar\build\backend\CodexMeter.exe','DualQuotaBar\build\backend\LICENSE',
  'DeepSeekBalance\build\DeepSeekBalance.exe',
+ 'DeepSeekBalance\PLATFORM_USAGE.md',
+ 'DeepSeekBalance\build\platform\DeepSeekPlatformUsage.exe',
+ 'DeepSeekBalance\build\platform\Microsoft.Web.WebView2.Core.dll',
+ 'DeepSeekBalance\build\platform\Microsoft.Web.WebView2.WinForms.dll',
+ 'DeepSeekBalance\build\platform\WebView2Loader.dll',
+ 'DeepSeekBalance\build\platform\PlatformUsageQuery.js',
+ 'DeepSeekBalance\build\platform\LICENSE.txt','DeepSeekBalance\build\platform\NOTICE.txt',
  'third_party\Win-CodexBar\CodexBar.exe','third_party\Win-CodexBar\LICENSE',
- 'third_party\CodexMeter.LICENSE','third_party\Win-CodexBar.LICENSE','third_party\dependencies.json'
+ 'third_party\CodexMeter.LICENSE','third_party\Win-CodexBar.LICENSE','third_party\dependencies.json',
+ 'third_party\WebView2.LICENSE','third_party\WebView2.NOTICE'
 )
 foreach($file in $files){
  $source=Join-Path $root $file

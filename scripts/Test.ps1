@@ -9,7 +9,8 @@ $sets=@(
  @{name='BalanceChecks';folder='DeepSeekBalance';files=@('BalanceChecks.cs','DeepSeekClient.cs')},
  @{name='PricingChecks';folder='DeepSeekBalance';files=@('PricingChecks.cs','PricingPeriod.cs')},
  @{name='AlertChecks';folder='DeepSeekBalance';files=@('AlertChecks.cs','BalanceAlert.cs')},
- @{name='ReferenceChecks';folder='DeepSeekBalance';files=@('ReferenceChecks.cs','DeepSeekClient.cs','BalanceReference.cs')}
+ @{name='ReferenceChecks';folder='DeepSeekBalance';files=@('ReferenceChecks.cs','DeepSeekClient.cs','BalanceReference.cs')},
+ @{name='PlatformUsageChecks';folder='DeepSeekBalance';files=@('PlatformUsageChecks.cs','PlatformUsage.cs')}
 )
 foreach($set in $sets){
  $exe=Join-Path $output ($set.name+'.exe')
@@ -19,3 +20,7 @@ foreach($set in $sets){
  & $exe
  if($LASTEXITCODE -ne 0){throw "Check failed: $($set.name)"}
 }
+if(Get-Command node -ErrorAction SilentlyContinue){
+ & node (Join-Path $root 'DeepSeekBalance\PlatformQueryChecks.js')
+ if($LASTEXITCODE -ne 0){throw 'Platform query checks failed'}
+}else{Write-Warning 'Node.js is unavailable; browser-query checks skipped.'}

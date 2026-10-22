@@ -16,3 +16,8 @@ settings*.json
 .env.*
 *.pfx
 *.pem
+**/build-preview/
+today.json
+audit.json
+usage-schema.json
+WebProfile/
