@@ -1,5 +1,5 @@
-[CmdletBinding()]
-param([string]$Version='v0.2.0')
+﻿[CmdletBinding()]
+param([string]$Version='v0.3.0')
 $ErrorActionPreference='Stop'
 if($Version -notmatch '^v[0-9]+\.[0-9]+\.[0-9]+$'){throw 'Version must be vX.Y.Z.'}
 $root=Split-Path -Parent $PSScriptRoot
@@ -8,7 +8,7 @@ $name='codex-deepseek-quota-rings-'+$Version+'-windows-x64'
 $package=Join-Path $dist $name
 if(Test-Path -LiteralPath $package){throw 'Package directory exists; use a new version or inspect it first.'}
 $files=@(
- 'README.md','LICENSE','NOTICE','THIRD_PARTY_NOTICES.md','Start.cmd','install.ps1',
+ 'README.md','CHANGELOG.md','LICENSE','NOTICE','THIRD_PARTY_NOTICES.md','Start.cmd','install.ps1',
  'DualQuotaBar\build\DualQuotaBar.exe','DualQuotaBar\build\CodexUsageLauncher.exe',
  'DualQuotaBar\build\backend\CodexMeter.exe','DualQuotaBar\build\backend\LICENSE',
  'DeepSeekBalance\build\DeepSeekBalance.exe',

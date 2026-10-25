@@ -1,4 +1,4 @@
-$ErrorActionPreference='Stop'
+﻿$ErrorActionPreference='Stop'
 $root=Split-Path -Parent $PSScriptRoot
 $output=Join-Path $root '.dependencies\checks'
 New-Item -ItemType Directory -Path $output -Force | Out-Null
@@ -10,7 +10,8 @@ $sets=@(
  @{name='PricingChecks';folder='DeepSeekBalance';files=@('PricingChecks.cs','PricingPeriod.cs')},
  @{name='AlertChecks';folder='DeepSeekBalance';files=@('AlertChecks.cs','BalanceAlert.cs')},
  @{name='ReferenceChecks';folder='DeepSeekBalance';files=@('ReferenceChecks.cs','DeepSeekClient.cs','BalanceReference.cs')},
- @{name='PlatformUsageChecks';folder='DeepSeekBalance';files=@('PlatformUsageChecks.cs','PlatformUsage.cs')}
+ @{name='PlatformUsageChecks';folder='DeepSeekBalance';files=@('PlatformUsageChecks.cs','PlatformUsage.cs')},
+ @{name='AppearanceChecks';folder='DeepSeekBalance';files=@('AppearanceChecks.cs','PanelAppearance.cs','PlatformUsage.cs')}
 )
 foreach($set in $sets){
  $exe=Join-Path $output ($set.name+'.exe')

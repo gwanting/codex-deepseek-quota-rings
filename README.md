@@ -7,7 +7,7 @@
 
 Windows 桌面用量工具：两个透明任务栏圆环、一个统一启动入口，以及配套的 Win-CodexBar。
 
-当前发布版本：**[v0.2.0](https://github.com/gwanting/codex-deepseek-quota-rings/releases/tag/v0.2.0)**。从 [Releases](https://github.com/gwanting/codex-deepseek-quota-rings/releases) 下载便携包。
+当前发布版本：**[v0.3.0](https://github.com/gwanting/codex-deepseek-quota-rings/releases/tag/v0.3.0)**。从 [Releases](https://github.com/gwanting/codex-deepseek-quota-rings/releases) 下载便携包。
 
 ## 功能
 
@@ -17,9 +17,11 @@ Windows 桌面用量工具：两个透明任务栏圆环、一个统一启动入
 | DeepSeek | ≥1 元显示整数，不足 1 元显示两位小数 | 余额 / 满圈基准；颜色表示余额预警 | 距下次峰谷切换的剩余时间比例；峰期红、谷期绿 |
 
 - 两个圆环均为 60×60 像素，透明背景，位于任务栏通知区左侧。
-- 点击圆心、环线或环间空隙均能打开详情；点击窗口内部可操作，点击外部收起。
+- 点击圆心、环线或环间空隙均能打开详情；再次点击圆环收起，点击窗口内部可操作，点击外部收起。
 - 一个“Codex 用量”桌面图标启动三个组件，已运行的组件不会重复启动。
-- 右键任一圆环，选择“关于 · Wanting 制作”可查看作者及版权声明；两个圆环和统一启动器的文件属性也包含作者、产品名和版权信息。
+- 右键任一圆环，选择“关于”可查看作者及版权声明；两个圆环和统一启动器的文件属性也包含作者、产品名和版权信息。
+- DeepSeek 详情面板支持磨砂背景、深色／浅色切换和 0%–100% 连续透明度调节；100% 时关闭背景材质，仅保留内容。按住滑块或轨道可连续拖动，松开自动保存设置。
+- DeepSeek 右键菜单跟随相同背景设置，点击圆环或外部区域可关闭；左键详情保留从圆环展开及收起的缩放动画。
 - DeepSeek 外环默认 **20 元为满圈**，10 元为半圈；可右键修改。外环颜色表示余额预警：不足 5 元红色，5–不足 10 元黄色，10–20 元蓝色，超过 20 元绿色。
 - DeepSeek 中心数字与 Codex 使用相同字体、字号和居中位置；内外环的大小、粗细一致。整数余额直接舍去小数，详情面板仍显示两位小数。
 - 内环颜色为峰期红色、谷期绿色；在峰谷切换后恢复满圈，按整个连续时段的剩余比例逐秒缩短；周末、节假日不会在午夜重置。悬停显示具体倒计时；无法确认切换时间时不显示进度。
@@ -45,10 +47,11 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 ```powershell
 .\build.ps1                 # 下载并校验固定版本上游依赖，编译三个入口
 .\scripts\Test.ps1          # 本地逻辑检查，无模型调用
+.\scripts\Test-UI.ps1       # 可选：需要交互式桌面，会显示测试窗口并移动鼠标
 .\install.ps1 -Start        # 创建统一桌面图标并启动
 ```
 
-依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.2.0`。
+依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.3.0`。
 
 ## 数据来源与限制
 
@@ -65,6 +68,8 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 本项目代码 MIT，第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。仓库及便携包均不附带个人 API 密钥、账户配置或日志。
 
 官方网页登录态保存在本机 `%LOCALAPPDATA%\DeepSeekQuotaUsage\WebProfile`，汇总缓存位于同目录 `today.json`；这些内容不随仓库或便携包上传，也不读取其他浏览器资料。查询过程不发起模型调用。
+
+外观设置保存在本机 `%LOCALAPPDATA%\DeepSeekQuotaUsage\appearance.json`，不随发布包分发。更新记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 问题反馈
 

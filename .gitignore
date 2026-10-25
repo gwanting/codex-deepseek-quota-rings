@@ -12,6 +12,7 @@ balance-reference.json
 api_keys*.json
 auth*.json
 settings*.json
+appearance.json
 .env
 .env.*
 *.pfx

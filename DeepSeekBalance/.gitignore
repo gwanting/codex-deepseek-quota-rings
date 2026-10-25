@@ -3,4 +3,5 @@ build-preview/
 .dependencies/
 balance-reference.json
 today.json
+appearance.json
 WebProfile/

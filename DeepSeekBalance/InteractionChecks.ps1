@@ -30,11 +30,12 @@ try{
  Click ($r.L+30) ($r.T+10);Start-Sleep -Milliseconds 2500
  $panel=Find-Window 'DeepSeek 余额详情';Check 'Transparent ring gap opens panel' ($panel -ne [IntPtr]::Zero -and [DeepSeekClickQA]::IsWindowVisible($panel))
  $pr=[DeepSeekClickQA+R]::new();[void][DeepSeekClickQA]::GetWindowRect($panel,[ref]$pr)
- Click ($pr.L+15) ($pr.T+100);Start-Sleep -Milliseconds 300;Check 'Inside panel stays open' ([DeepSeekClickQA]::IsWindowVisible($panel))
- Click ($r.L+30) ($r.T+30);Start-Sleep -Milliseconds 300;Check 'Center click keeps panel open' ([DeepSeekClickQA]::IsWindowVisible($panel))
+ Click ($pr.L+15) ($pr.T+100);Start-Sleep -Milliseconds 700;Check 'Inside panel stays open' ([DeepSeekClickQA]::IsWindowVisible($panel))
+ Click ($r.L+30) ($r.T+30);Start-Sleep -Milliseconds 700;Check 'Center click closes panel' (-not [DeepSeekClickQA]::IsWindowVisible($panel))
+ Click ($r.L+30) ($r.T+30);Start-Sleep -Milliseconds 700;Check 'Next center click reopens panel' ([DeepSeekClickQA]::IsWindowVisible($panel))
  $tray=[DeepSeekClickQA]::FindWindow('Shell_TrayWnd',$null);$tr=[DeepSeekClickQA+R]::new();[void][DeepSeekClickQA]::GetWindowRect($tray,[ref]$tr)
- Click ($tr.L+2) ($tr.T+2);Start-Sleep -Milliseconds 350;Check 'Outside click dismisses panel' (-not [DeepSeekClickQA]::IsWindowVisible($panel))
+ Click ($tr.L+2) ($tr.T+2);Start-Sleep -Milliseconds 700;Check 'Outside click dismisses panel' (-not [DeepSeekClickQA]::IsWindowVisible($panel))
  [void][DeepSeekClickQA]::GetWindowRect($bar,[ref]$r);Click ($r.L+30) ($r.T+22);Start-Sleep -Milliseconds 1500;Check 'Transparent center opens panel' ([DeepSeekClickQA]::IsWindowVisible($panel))
- Click ($tr.L+2) ($tr.T+2);Start-Sleep -Milliseconds 200
- foreach($offset in @(@(30,5),@(5,30),@(55,30),@(30,55))){[void][DeepSeekClickQA]::GetWindowRect($bar,[ref]$r);Click ($r.L+$offset[0]) ($r.T+$offset[1]);Start-Sleep -Milliseconds 350;Check ('Outer edge '+($offset -join ',')) ([DeepSeekClickQA]::IsWindowVisible($panel));Click ($tr.L+2) ($tr.T+2);Start-Sleep -Milliseconds 200}
+ Click ($tr.L+2) ($tr.T+2);Start-Sleep -Milliseconds 350
+ foreach($offset in @(@(30,5),@(5,30),@(55,30),@(30,55))){[void][DeepSeekClickQA]::GetWindowRect($bar,[ref]$r);Click ($r.L+$offset[0]) ($r.T+$offset[1]);Start-Sleep -Milliseconds 700;Check ('Outer edge '+($offset -join ',')) ([DeepSeekClickQA]::IsWindowVisible($panel));Click ($tr.L+2) ($tr.T+2);Start-Sleep -Milliseconds 350}
 }finally{[void][DeepSeekClickQA]::SetCursorPos($original.X,$original.Y)}
