@@ -1,4 +1,4 @@
-# Codex + DeepSeek 任务栏双环
+﻿# Codex + DeepSeek 任务栏双环
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows x64](https://img.shields.io/badge/Platform-Windows%20x64-0078D6.svg)](https://github.com/gwanting/codex-deepseek-quota-rings/releases)
@@ -7,7 +7,7 @@
 
 Windows 桌面用量工具：两个透明任务栏圆环、一个统一启动入口，以及配套的 Win-CodexBar。
 
-当前发布版本：**[v0.3.2](https://github.com/gwanting/codex-deepseek-quota-rings/releases/tag/v0.3.2)**。从 [Releases](https://github.com/gwanting/codex-deepseek-quota-rings/releases) 下载便携包。
+当前发布版本：**[v0.3.3](https://github.com/gwanting/codex-deepseek-quota-rings/releases/tag/v0.3.3)**。从 [Releases](https://github.com/gwanting/codex-deepseek-quota-rings/releases) 下载便携包。
 
 ## 功能
 
@@ -51,7 +51,7 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 .\install.ps1 -Start        # 创建统一桌面图标并启动
 ```
 
-依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.3.2`。
+依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.3.3`。
 
 ## 数据来源与限制
 
