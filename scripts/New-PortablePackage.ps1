@@ -1,5 +1,5 @@
 ﻿[CmdletBinding()]
-param([string]$Version='v0.3.0')
+param([string]$Version='v0.3.1')
 $ErrorActionPreference='Stop'
 if($Version -notmatch '^v[0-9]+\.[0-9]+\.[0-9]+$'){throw 'Version must be vX.Y.Z.'}
 $root=Split-Path -Parent $PSScriptRoot
