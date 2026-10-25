@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
+[assembly: System.Reflection.AssemblyTitle("DeepSeek 余额圆环")]
+[assembly: System.Reflection.AssemblyDescription("Wanting 制作")]
+[assembly: System.Reflection.AssemblyCompany("Wanting")]
+[assembly: System.Reflection.AssemblyProduct("Codex + DeepSeek 任务栏双环")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright © 2026 Wanting")]
 
 namespace DeepSeekBalance {
 static class Program {
@@ -50,7 +56,7 @@ class Bar:Form {
  protected override bool ShowWithoutActivation{get{return true;}}
  protected override CreateParams CreateParams{get{var p=base.CreateParams;p.ExStyle|=0x08000000|0x80|0x80000;return p;}}
  public Bar(){Text="DeepSeek 余额任务栏";AutoScaleMode=AutoScaleMode.None;StartPosition=FormStartPosition.Manual;FormBorderStyle=FormBorderStyle.None;ShowInTaskbar=false;TopMost=true;DoubleBuffered=true;ClientSize=new Size(60,60);BackColor=Color.FromArgb(25,32,40);Cursor=Cursors.Hand;using(var outline=new GraphicsPath()){outline.AddEllipse(0,0,60,60);Region=new Region(outline);}tip.SetToolTip(this,"DeepSeek 账户余额\n正在读取…");
-  var menu=new ContextMenuStrip{Font=new Font("Microsoft YaHei UI",11)};menu.Items.Add("打开 DeepSeek 余额详情",null,(s,e)=>OpenPanel());menu.Items.Add("刷新余额",null,(s,e)=>Fetch());menu.Items.Add("设置满圈金额…",null,(s,e)=>SetReference());menu.Items.Add("以当前余额重新设为满圈",null,(s,e)=>{if(Current()){reference.Set(snapshot.Total,snapshot.Currency,true);UpdateStatus();Render();}});menu.Items.Add("退出 DeepSeek 余额",null,(s,e)=>Close());ContextMenuStrip=menu;
+  var menu=new ContextMenuStrip{Font=new Font("Microsoft YaHei UI",11)};menu.Items.Add("打开 DeepSeek 余额详情",null,(s,e)=>OpenPanel());menu.Items.Add("刷新余额",null,(s,e)=>Fetch());menu.Items.Add("设置满圈金额…",null,(s,e)=>SetReference());menu.Items.Add("以当前余额重新设为满圈",null,(s,e)=>{if(Current()){reference.Set(snapshot.Total,snapshot.Currency,true);UpdateStatus();Render();}});menu.Items.Add("关于 · Wanting 制作",null,(s,e)=>MessageBox.Show(this,"DeepSeek 余额圆环\n\nWanting 制作\nCopyright © 2026 Wanting\n\n原创圆环和统一启动器采用 MIT License。\n第三方组件版权及许可归各自权利人。\n\nhttps://github.com/gwanting/codex-deepseek-quota-rings","关于 DeepSeek 余额圆环",MessageBoxButtons.OK,MessageBoxIcon.Information));menu.Items.Add("退出 DeepSeek 余额",null,(s,e)=>Close());ContextMenuStrip=menu;
   refresh=new System.Windows.Forms.Timer{Interval=60000};refresh.Tick+=(s,e)=>Fetch();refresh.Start();position=new System.Windows.Forms.Timer{Interval=1000};position.Tick+=(s,e)=>{Place();UpdateStatus();Render();};position.Start();Shown+=(s,e)=>{Place();Render();Fetch();mouseCallback=OnMouse;mouseHook=SetWindowsHookEx(14,mouseCallback,GetModuleHandle(null),0);};MouseEnter+=(s,e)=>{if(snapshot==null||DateTime.Now-fetched>TimeSpan.FromSeconds(5))Fetch();};FormClosed+=(s,e)=>{closing=true;if(details!=null)details.Dispose();if(mouseHook!=IntPtr.Zero)UnhookWindowsHookEx(mouseHook);refresh.Dispose();position.Dispose();tip.Dispose();};
  }
  protected override void WndProc(ref Message m){if(m.Msg==0x21){m.Result=new IntPtr(3);return;}if(m.Msg==0x202){long bits=m.LParam.ToInt64();var p=new Point((short)(bits&65535),(short)((bits>>16)&65535));if(ClientRectangle.Contains(p))BeginInvoke(new Action(OpenPanel));m.Result=IntPtr.Zero;return;}base.WndProc(ref m);}

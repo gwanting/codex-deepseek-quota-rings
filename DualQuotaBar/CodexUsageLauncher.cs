@@ -1,8 +1,14 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+
+[assembly: System.Reflection.AssemblyTitle("Codex 用量统一启动器")]
+[assembly: System.Reflection.AssemblyDescription("Wanting 制作")]
+[assembly: System.Reflection.AssemblyCompany("Wanting")]
+[assembly: System.Reflection.AssemblyProduct("Codex + DeepSeek 任务栏双环")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright © 2026 Wanting")]
 
 static class CodexUsageLauncher {
  [STAThread] static void Main(string[] args) {
