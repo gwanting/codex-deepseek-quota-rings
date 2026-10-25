@@ -1,4 +1,4 @@
-﻿# Codex + DeepSeek 任务栏双环
+# Codex + DeepSeek 任务栏双环
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows x64](https://img.shields.io/badge/Platform-Windows%20x64-0078D6.svg)](https://github.com/gwanting/codex-deepseek-quota-rings/releases)
@@ -7,7 +7,7 @@
 
 Windows 桌面用量工具：两个透明任务栏圆环、一个统一启动入口，以及配套的 Win-CodexBar。
 
-当前发布版本：**[v0.3.1](https://github.com/gwanting/codex-deepseek-quota-rings/releases/tag/v0.3.1)**。从 [Releases](https://github.com/gwanting/codex-deepseek-quota-rings/releases) 下载便携包。
+当前发布版本：**[v0.3.2](https://github.com/gwanting/codex-deepseek-quota-rings/releases/tag/v0.3.2)**。从 [Releases](https://github.com/gwanting/codex-deepseek-quota-rings/releases) 下载便携包。
 
 ## 功能
 
@@ -51,7 +51,7 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 .\install.ps1 -Start        # 创建统一桌面图标并启动
 ```
 
-依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.3.1`。
+依赖已就绪时可用 `build.ps1 -Offline`。制作便携包：`scripts/New-PortablePackage.ps1 -Version v0.3.2`。
 
 ## 数据来源与限制
 
@@ -77,13 +77,11 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 
 ## 版权与许可
 
+圆环设计与制作：**Wanting**。
+
 Copyright © 2026 Wanting ([gwanting](https://github.com/gwanting))。
 
-**圆环设计与制作：Wanting。** 本项目的双环界面、配色、布局与交互方案由 Wanting 设计，统一启动器及相关文档属于本项目原创部分。
-
-上述原创部分采用 **[MIT License](LICENSE)** 授权使用。MIT 是使用许可证，描述他人如何使用、修改和分发本项目，不是作者名称，也不表示圆环设计归第三方所有。版权署名仍为 Wanting。你可以依照该许可证使用、修改、分发或商用；分发本软件或其主要部分时，应保留原有版权声明和许可文本。完整授权条款以 [LICENSE](LICENSE) 为准，简明版权归属见 [NOTICE](NOTICE)。
-
-Win-CodexBar、CodexMeter、Microsoft WebView2 等第三方组件的权利归各自权利人所有，分别适用其自身许可证，详见 [第三方声明](THIRD_PARTY_NOTICES.md)。本项目不将第三方代码或可执行文件声明为作者原创。
+许可证：[MIT License](LICENSE)。第三方组件许可见 [第三方声明](THIRD_PARTY_NOTICES.md)。
 
 ## 免责声明
 
