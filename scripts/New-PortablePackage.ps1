@@ -8,7 +8,7 @@ $name='codex-deepseek-quota-rings-'+$Version+'-windows-x64'
 $package=Join-Path $dist $name
 if(Test-Path -LiteralPath $package){throw 'Package directory exists; use a new version or inspect it first.'}
 $files=@(
- 'README.md','LICENSE','THIRD_PARTY_NOTICES.md','Start.cmd','install.ps1',
+ 'README.md','LICENSE','NOTICE','THIRD_PARTY_NOTICES.md','Start.cmd','install.ps1',
  'DualQuotaBar\build\DualQuotaBar.exe','DualQuotaBar\build\CodexUsageLauncher.exe',
  'DualQuotaBar\build\backend\CodexMeter.exe','DualQuotaBar\build\backend\LICENSE',
  'DeepSeekBalance\build\DeepSeekBalance.exe',

@@ -1,0 +1,17 @@
+Codex + DeepSeek Taskbar Quota Rings
+Copyright (c) 2026 Wanting
+Author: Wanting (@gwanting)
+Project: https://github.com/gwanting/codex-deepseek-quota-rings
+
+Original ring interfaces, launcher, and accompanying project documentation
+are licensed under the MIT License. See LICENSE for the full terms.
+Retain the copyright and permission notice as required by that license.
+This notice does not add restrictions to the MIT License.
+
+Third-party components retain their own copyright and license terms.
+Win-CodexBar, CodexMeter, and Microsoft WebView2 are not claimed as original
+works of this project's author. See THIRD_PARTY_NOTICES.md and the license
+texts in third_party/ for attribution and applicable terms.
+
+This is an independent project, not an official OpenAI, DeepSeek, or
+Microsoft product. Product names and trademarks belong to their owners.

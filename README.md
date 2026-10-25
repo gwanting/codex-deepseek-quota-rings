@@ -1,6 +1,13 @@
 # Codex + DeepSeek 任务栏双环
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform: Windows x64](https://img.shields.io/badge/Platform-Windows%20x64-0078D6.svg)](https://github.com/gwanting/codex-deepseek-quota-rings/releases)
+
+> **Wanting 制作，欢迎使用。** 作者：[Wanting / @gwanting](https://github.com/gwanting)
+
 Windows 桌面用量工具：两个透明任务栏圆环、一个统一启动入口，以及配套的 Win-CodexBar。
+
+当前发布版本：**[v0.2.0](https://github.com/gwanting/codex-deepseek-quota-rings/releases/tag/v0.2.0)**。从 [Releases](https://github.com/gwanting/codex-deepseek-quota-rings/releases) 下载便携包。
 
 ## 功能
 
@@ -57,3 +64,21 @@ DeepSeek 圆环复用当前 Windows 用户在 Win-CodexBar 中保存的密钥，
 本项目代码 MIT，第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。仓库及便携包均不附带个人 API 密钥、账户配置或日志。
 
 官方网页登录态保存在本机 `%LOCALAPPDATA%\DeepSeekQuotaUsage\WebProfile`，汇总缓存位于同目录 `today.json`；这些内容不随仓库或便携包上传，也不读取其他浏览器资料。查询过程不发起模型调用。
+
+## 问题反馈
+
+使用问题和功能建议请提交至 [Issues](https://github.com/gwanting/codex-deepseek-quota-rings/issues)，附上 Windows 版本、程序版本、复现步骤及脱敏截图。请勿上传 API 密钥、登录令牌、验证码、浏览器用户资料目录或未经脱敏的账户文件。
+
+## 版权与许可
+
+Copyright © 2026 Wanting ([gwanting](https://github.com/gwanting))。
+
+本项目原创圆环界面、统一启动器及相关文档采用 **[MIT License](LICENSE)**。你可以依照该许可证使用、修改、分发或商用；分发本软件或其主要部分时，应保留原有版权声明和许可文本。完整授权条款以 [LICENSE](LICENSE) 为准，简明版权归属见 [NOTICE](NOTICE)。
+
+Win-CodexBar、CodexMeter、Microsoft WebView2 等第三方组件的权利归各自权利人所有，分别适用其自身许可证，详见 [第三方声明](THIRD_PARTY_NOTICES.md)。本项目不将第三方代码或可执行文件声明为作者原创。
+
+## 免责声明
+
+本软件按“现状”提供，不附带 MIT 许可证所述的明示或暗示担保；责任限制详见 [LICENSE](LICENSE)。额度、余额和消费统计可能因网络、缓存、官方统计延迟或接口变化而与官方页面存在差异，请以相应服务提供方的账户记录为准。
+
+本项目为独立第三方工具，与 OpenAI、DeepSeek、Microsoft 及相关上游项目不存在官方隶属或背书关系。文中产品名称及商标属于各自权利人。
